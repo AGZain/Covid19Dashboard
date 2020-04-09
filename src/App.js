@@ -25,9 +25,15 @@ const TABLE_LIST = [
 class App extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      list: [...TABLE_LIST]
-    }
+    this.state = [
+        { x: 10, y: 30 },
+        { x: 30, y: 200 },
+        { x: 45, y: 100 },
+        { x: 50, y: 400 },
+        { x: 70, y: 150 },
+        { x: 100, y: 250 }
+      ]
+    
   }
   render() {
     return (
