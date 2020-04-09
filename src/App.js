@@ -26,7 +26,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-        list = [ 
+        list: [ 
           { x: 10, y: 30 },
           { x: 30, y: 200 },
           { x: 45, y: 100 },
