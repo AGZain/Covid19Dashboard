@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
+import csvFile from './covidtesting.csv'
+import Papa from 'papaparse';
 import './App.css';
 import {
   ScatterChart,
@@ -34,11 +36,36 @@ class App extends Component {
           { x: 70, y: 150 },
           { x: 100, y: 250 }
         ]
-    }
+    };
+    this.updateData = this.updateData.bind(this);
   }
+
+  importCSV = () => {
+    //var data = Papa.parse("covidtesting.csv");
+    //console.log(data)
+    var data;
+
+    Papa.parse(csvFile, {
+      header: true,
+      delimiter: ',',
+      download: true,
+      skipEmptyLines: true,
+      complete: function(results) {
+        console.log(results);
+        data = results.data;
+      }
+    });
+  };
+  updateData(result) {
+    
+    var data = result.data;
+    console.log(data);
+  }
+  
   render() {
     return (
       <div className="App">
+        {this.importCSV()}
         <header className="App-header">
           {/* <img src={logo} className="App-logo" alt="logo" /> */}
           <p>
@@ -49,13 +76,13 @@ class App extends Component {
           height={400}
           margin={{ top: 20, right: 20, bottom: 20, left: 20 }}
         >
-          <CartesianGrid />
-          <XAxis type="number" dataKey={"x"} name="stature" unit="cm" />
-          <YAxis type="number" dataKey={"y"} name="weight" unit="kg" />
+          {/* <CartesianGrid /> */}
+          <XAxis type="number" dataKey={"x"} name="" unit="" />
+          <YAxis type="number" dataKey={"y"} name="" unit="" />
           <ZAxis range={[100]} />
           <Tooltip cursor={{ strokeDasharray: "3 3" }} />
           <Legend />
-          <Scatter name="A school" data={this.state.list} fill="#8884d8" line shape="line" />
+          <Scatter name="B school" data={this.state.list} fill="#8884d8" line shape="line" />
         </ScatterChart>
         </header>
         
